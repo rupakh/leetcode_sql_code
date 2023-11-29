@@ -8,9 +8,10 @@ coalesce(LEAD(recorddate) OVER(ORDER BY recorddate ASC),0) AS recorddate_next,
 temperature,
 LEAD(temperature) OVER(ORDER BY recorddate ASC) AS temperature_next
 from weather
-order by recordDate asc
 )
 SELECT  id_next as Id 
 from cte
-where temperature_next>temperature
-and  recorddate<recorddate_next  and date_add(recorddate, INTERVAL 1 DAY)=recorddate_next
+where 
+temperature_next>temperature and 
+recorddate<recorddate_next  and 
+date_add(recorddate, INTERVAL 1 DAY)=recorddate_next
